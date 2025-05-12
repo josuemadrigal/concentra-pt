@@ -23,6 +23,7 @@ git clone https://github.com/josuemadrigal/concentra-pt.git
 cd concentra-pt
 yarn install
 yarn start
+> Si en algun momento no reconoce de la red inicia con yarn start --host=localhost
 ```
 
 > Debe asegurarse de tener `expo-cli` instalado globalmente.
