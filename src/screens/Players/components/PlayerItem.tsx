@@ -1,9 +1,9 @@
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { Player } from "../types";
-import Colors from "../constants/colors";
-import Layout from "../constants/layout";
+import { Player } from "../../../types";
+import Colors from "../../../constants/colors";
+import Layout from "../../../constants/layout";
 
 interface PlayerItemProps {
   player: Player;

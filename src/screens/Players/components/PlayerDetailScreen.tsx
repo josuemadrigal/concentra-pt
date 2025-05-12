@@ -10,9 +10,9 @@ import {
 import { useDispatch } from "react-redux";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
-import { RootStackParamList } from "../navigation";
-import Colors from "../constants/colors";
-import Layout from "../constants/layout";
+import { RootStackParamList } from "../../../navigation";
+import Colors from "../../../constants/colors";
+import Layout from "../../../constants/layout";
 import { StatusBar } from "expo-status-bar";
 import { toggleFavoriteRequest } from "@/store/slices/playersSlice";
 
