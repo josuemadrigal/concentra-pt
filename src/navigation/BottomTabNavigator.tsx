@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import HomeScreen from "../screens/HomeScreen";
-import PlayersListScreen from "../screens/PlayersListScreen";
+import PlayersListScreen from "../screens/Players/PlayersListScreen";
 import GameListScreen from "../screens/GameListScreen";
 import FieldScreen from "../screens/FieldScreen";
 import Colors from "../constants/colors";
@@ -57,7 +57,7 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
                 <FontAwesome6
                   name="golf-ball-tee"
                   size={50}
-                  color={Colors.white}
+                  color={isFocused ? Colors.gray : Colors.white}
                 />
               </View>
               <Text style={styles.centerButtonLabel}>{label}</Text>
@@ -99,6 +99,7 @@ const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
       id={undefined}
+      initialRouteName="Home"
       screenOptions={{
         headerShown: true,
         tabBarShowLabel: false,

@@ -3,20 +3,20 @@ import { FlatList, StyleSheet, Text, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useDispatch, useSelector } from "react-redux";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../navigation";
-import { RootState } from "../store";
+import { RootStackParamList } from "../../navigation";
+import { RootState } from "../../store";
 import {
   fetchPlayersRequest,
   setSearchQuery,
   setSelectedGroup,
-} from "../store/slices/playersSlice";
-import TabSelector from "../components/TabSelector";
-import SearchBar from "../components/SearchBar";
-import PlayerItem from "../components/PlayerItem";
-import Loader from "../components/Loader";
-import { Player, PlayerGroup } from "../types";
-import Colors from "../constants/colors";
+} from "../../store/slices/playersSlice";
+import TabSelector from "../../components/TabSelector";
+import SearchBar from "../../components/SearchBar";
+import Loader from "../../components/Loader";
+import { Player, PlayerGroup } from "../../types";
+import Colors from "../../constants/colors";
 import TopCurveBackground from "@/components/TopCurveBackground";
+import PlayerItem from "./components/PlayerItem";
 
 type PlayersListScreenProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, "Players">;

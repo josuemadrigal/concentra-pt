@@ -2,7 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BottomTabNavigator from "./BottomTabNavigator";
-import PlayerDetailScreen from "../screens/PlayerDetailScreen";
+import PlayerDetailScreen from "../screens/Players/components/PlayerDetailScreen";
 import { Player } from "../types";
 import Colors from "../constants/colors";
 import { StyleSheet } from "react-native";
