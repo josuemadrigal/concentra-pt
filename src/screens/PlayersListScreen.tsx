@@ -6,7 +6,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation";
 import { RootState } from "../store";
 import {
-  fetchPlayersAsync,
+  fetchPlayersRequest,
   setSearchQuery,
   setSelectedGroup,
 } from "../store/slices/playersSlice";
@@ -45,7 +45,7 @@ const PlayersListScreen: React.FC<PlayersListScreenProps> = ({
   );
 
   useEffect(() => {
-    dispatch(fetchPlayersAsync());
+    dispatch(fetchPlayersRequest());
   }, [dispatch]);
 
   const renderPlayerItem = useCallback(

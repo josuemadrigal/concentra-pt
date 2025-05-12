@@ -11,10 +11,10 @@ import { useDispatch } from "react-redux";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
 import { RootStackParamList } from "../navigation";
-import { toggleFavoriteAsync } from "../store/slices/playersSlice";
 import Colors from "../constants/colors";
 import Layout from "../constants/layout";
 import { StatusBar } from "expo-status-bar";
+import { toggleFavoriteRequest } from "@/store/slices/playersSlice";
 
 type PlayerDetailScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -28,7 +28,7 @@ const PlayerDetailScreen: React.FC<PlayerDetailScreenProps> = ({ route }) => {
 
   const handleToggleFavorite = () => {
     setFavorite((prev) => !prev);
-    dispatch(toggleFavoriteAsync(player.id));
+    dispatch(toggleFavoriteRequest(player.id));
   };
 
   const biography = `${player.name} es un jugador de golf experimentado con un hándicap de ${player.handicap}. Ha participado en numerosos torneos locales y nacionales, destacando por su técnica y precisión en el campo.

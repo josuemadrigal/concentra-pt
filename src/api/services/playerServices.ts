@@ -1,21 +1,21 @@
 import { Player, PlayersResponse } from "@/types";
-import { apiClient } from "..";
+import { fetchPlayersApi } from "..";
 
 export const fetchPlayers = async (): Promise<Player[]> => {
   try {
-    const response = await apiClient.get<PlayersResponse>("/player/list");
-    if (response.data && response.data.playerList.length > 0) {
-      return response.data.playerList.map((player, index) => ({
+    const response = await fetchPlayersApi();
+    if (response && response.playerList.length > 0) {
+      return response.playerList.map((player, index) => ({
         ...player,
-        handicap: player.handicap ? parseFloat(player.handicap) : 0,
+        handicap: player.handicap ? Number(player.handicap) : 0,
+
         id: `player-${index}-${Date.now()}`,
       }));
-    } else {
-      return [];
     }
+    return [];
   } catch (error) {
     console.error("Error fetching players:", error);
-    return [];
+    throw error;
   }
 };
 
