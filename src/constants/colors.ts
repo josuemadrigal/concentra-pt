@@ -1,0 +1,16 @@
+export default {
+  primary: "#EF5833",
+  accent: "#104E7A",
+  selectedTab: "#0F4F7A",
+  white: "#FFFFFF",
+  lightGray: "#F0F0F0",
+  gray: "#CCCCCC",
+  darkGray: "#888888",
+  placeholder: "#CCCCCa",
+  text: "#333333",
+  favorite: "#FFD700",
+  searchBackground: "#FFFFFF",
+  searchIcon: "#FF6347",
+  playerItemBackground: "#104E7A",
+  playerItemText: "#104E7A",
+};
