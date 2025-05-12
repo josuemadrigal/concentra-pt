@@ -19,8 +19,8 @@ Aplicación móvil creada con **React Native + Expo**, que muestra una lista de 
 ## Instalación y ejecución
 
 ```bash
-git clone https://github.com/tu-usuario/jugadores-app.git
-cd jugadores-app
+git clone https://github.com/josuemadrigal/concentra-pt.git
+cd concentra-pt
 yarn install
 yarn start
 ```
