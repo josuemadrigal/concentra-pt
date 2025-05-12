@@ -1,9 +1,22 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Player, PlayerGroup } from "../../types";
-import {
-  fetchPlayers,
-  toggleFavoritePlayer,
-} from "@/api/services/playerServices";
+
+export const fetchPlayersRequest = createAction("players/fetchPlayersRequest");
+export const fetchPlayersSuccess = createAction<Player[]>(
+  "players/fetchPlayersSuccess"
+);
+export const fetchPlayersFailure = createAction<string>(
+  "players/fetchPlayersFailure"
+);
+export const toggleFavoriteRequest = createAction<string>(
+  "players/toggleFavoriteRequest"
+);
+export const toggleFavoriteSuccess = createAction<string>(
+  "players/toggleFavoriteSuccess"
+);
+export const toggleFavoriteFailure = createAction<string>(
+  "players/toggleFavoriteFailure"
+);
 
 interface PlayersState {
   data: Player[];
@@ -23,20 +36,13 @@ const initialState: PlayersState = {
   selectedGroup: 1,
 };
 
-export const fetchPlayersAsync = createAsyncThunk(
-  "players/fetchPlayers",
-  async () => {
-    return fetchPlayers();
-  }
-);
-
-export const toggleFavoriteAsync = createAsyncThunk(
-  "players/toggleFavorite",
-  async (playerId: string) => {
-    await toggleFavoritePlayer(playerId);
-    return playerId;
-  }
-);
+type PlayersAction =
+  | ReturnType<typeof fetchPlayersRequest>
+  | ReturnType<typeof fetchPlayersSuccess>
+  | ReturnType<typeof fetchPlayersFailure>
+  | ReturnType<typeof toggleFavoriteRequest>
+  | ReturnType<typeof toggleFavoriteSuccess>
+  | ReturnType<typeof toggleFavoriteFailure>;
 
 const playersSlice = createSlice({
   name: "players",
@@ -61,11 +67,11 @@ const playersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchPlayersAsync.pending, (state) => {
+      .addCase(fetchPlayersRequest, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchPlayersAsync.fulfilled, (state, action) => {
+      .addCase(fetchPlayersSuccess, (state, action) => {
         state.loading = false;
         state.data = action.payload;
         state.filteredPlayers = filterPlayers(
@@ -74,18 +80,17 @@ const playersSlice = createSlice({
           state.selectedGroup
         );
       })
-      .addCase(fetchPlayersAsync.rejected, (state, action) => {
+      .addCase(fetchPlayersFailure, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || "Failed to fetch players";
+        state.error = action.payload;
       })
-      .addCase(toggleFavoriteAsync.fulfilled, (state, action) => {
+      .addCase(toggleFavoriteSuccess, (state, action) => {
         const playerId = action.payload;
         state.data = state.data.map((player) =>
           player.id === playerId
             ? { ...player, isFavorite: !player.isFavorite }
             : player
         );
-
         state.filteredPlayers = filterPlayers(
           state.data,
           state.searchQuery,
@@ -109,3 +114,5 @@ const filterPlayers = (
 
 export const { setSearchQuery, setSelectedGroup } = playersSlice.actions;
 export default playersSlice.reducer;
+
+export type { PlayersAction, PlayersState };
